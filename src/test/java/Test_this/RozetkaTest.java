@@ -10,7 +10,7 @@ public class RozetkaTest {
     //LoginField loginField ;
     DriverWrapper getDdriver;
     MainPage mainPage;
-    RegistrattionPage registrationPage;  //  это мы класс делаем переменной?
+    RegistrattionPage registrationPage;  
     //email emailField;
     //PasswordField passwordField;
     //pushSubmit pushSubmit;
@@ -23,7 +23,7 @@ public class RozetkaTest {
         driver = new ChromeDriver();*/
 //        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         mainPage = new MainPage();
-        registrationPage = new RegistrattionPage(); // обявленную переменную инстанциируем. вызываем конструктор. а конструктор возвращает элемент данного класса.
+        registrationPage = new RegistrattionPage(); 
         //emailField = new email(driver);
         //passwordField = new PasswordField(driver);
         //pushSubmit = new pushSubmit(driver);
