@@ -1,5 +1,6 @@
 package Test_this;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,14 +15,13 @@ public class DriverWrapper {
 
     private static WebDriver driver;
 
-    public static  WebDriver getDriver() throws IOException {
+    public static  WebDriver getDriver() {
 
-// to run this public public:
-// 1. All classes and methods who call this method(getDriver()) need to have "throws IOException".
-// 2. you need to set JDK and JVM version to 1.6 or upper. You can do it by setting the POM file
-// with "maven-compiler-plugin".  ( if dosent work try set File->ProjectStructure->Modules->Source->Language level
-// to lvl that you need.)
-// 3. you CANT compare like this if(x == "sasda") -   ONLY like  if(x==y)
+// notes
+// 1. SingleTon getDriver()) "throws IOException".
+// 2. you need to set JDK and JVM version to 1.8 or upper. You can do it by setting the POM file
+// with "maven-compiler-plugin".  ( if dose'nt work try set File->ProjectStructure->Modules->Source->Language level to lvl that you need
+
         try {
             Properties properties = new Properties();
             InputStream input = null;
@@ -29,7 +29,6 @@ public class DriverWrapper {
             properties.load(input);
             properties.getProperty("driverWEBs");
             String x = properties.getProperty("driverWEBs");
-            System.out.println(x+" = String x");
             String y = "ChromeDriver";
             String z =  "FirefoxDriver";
 
@@ -38,6 +37,7 @@ public class DriverWrapper {
                     System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
                     driver = new ChromeDriver();
                     System.out.println("Starting Chrome Driver ");
+                    driver.manage().window().maximize();
                 }
                 if (x.equals(z)) {
                     System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");
@@ -48,14 +48,9 @@ public class DriverWrapper {
                 System.out.println("None of the drivers was initialized");
             }
         }
-            } finally {
-            if (driver == null) {
-                System.out.println(driver);
-            }
-
-            System.out.println("Debug shity code");
+            } catch (Exception e){
+                throw new Error("Cant start WebDriver");
             }
         return driver;  }
         }
-
 
